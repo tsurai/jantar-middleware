@@ -4,6 +4,7 @@ import (
 	"github.com/tsurai/jantar"
 	"github.com/tsurai/jantar-middleware"
 	"net/http"
+	"os"
 )
 
 type Static struct {
@@ -11,11 +12,12 @@ type Static struct {
 }
 
 func (s *Static) Initialize() {
-
+	if err := os.RemoveAll("./views/_static"); err != nil {
+		jantar.Log.Errord(jantar.JLData{"error": err}, "Failed to clear static file output directory")
+	}
 }
 
 func (s *Static) Cleanup() {
-
 }
 
 func (s *Static) Call(respw http.ResponseWriter, req *http.Request) bool {

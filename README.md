@@ -1,4 +1,4 @@
 jantar-middleware
 =================
 
-A selection of Middleware for Jantar
+A collection of middlewares for Jantar
