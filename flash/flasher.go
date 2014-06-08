@@ -39,7 +39,7 @@ func (f *Flasher) FlashStruct(name string, obj interface{}) {
 			}
 		}
 	} else {
-		jantar.Log.Errordf(jantar.JLData{"expected": "struct", "got": t.Kind()}, "failed to add struct flash. Invalid object type")
+		jantar.Log.Errord(jantar.JLData{"expected": "struct", "got": t.Kind()}, "failed to add struct flash. Invalid object type")
 	}
 }
 
