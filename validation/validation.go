@@ -43,8 +43,7 @@ func (v *Validation) Call(respw http.ResponseWriter, req *http.Request) bool {
 			errorMap = m
 		}
 
-		renderArgs := context.Get(req, "renderArgs").(map[string]interface{})
-		renderArgs["_errors"] = errorMap
+		context.RenderArgs(req)["_errors"] = errorMap
 
 		// delete cookie
 		cookie.MaxAge = -9999

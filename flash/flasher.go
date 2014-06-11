@@ -43,13 +43,21 @@ func (f *Flasher) FlashStruct(name string, obj interface{}) {
 	}
 }
 
-func (f *Flasher) Save() {
+func (f *Flasher) save(path string) {
 	if len(f.data) > 0 {
 		values := url.Values{}
 		for key, val := range f.data {
 			values.Add(key, val)
 		}
 
-		http.SetCookie(f.respw, &http.Cookie{Name: "JANTAR_FLASH", Value: values.Encode(), Secure: false, HttpOnly: true, Path: "/"})
+		http.SetCookie(f.respw, &http.Cookie{Name: "JANTAR_FLASH", Value: values.Encode(), Secure: false, HttpOnly: true, Path: path})
 	}
+}
+
+func (f *Flasher) Save() {
+	f.save("/")
+}
+
+func (f *Flasher) SaveForPath(path string) {
+	f.save(path)
 }

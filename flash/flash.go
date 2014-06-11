@@ -36,8 +36,7 @@ func (f *Flash) Call(respw http.ResponseWriter, req *http.Request) bool {
 			}
 		}
 
-		renderArgs := context.Get(req, "renderArgs").(map[string]interface{})
-		renderArgs["_flash"] = flashMap
+		context.RenderArgs(req)["_flash"] = flashMap
 
 		// delete cookie
 		cookie.MaxAge = -9999
